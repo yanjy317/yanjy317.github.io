@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人主页</title>
+  <title>YanJY - 前端开发者</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -578,7 +578,7 @@
     <ul class="nav-links">
       <li><a href="#about">关于我</a></li>
       <li><a href="#projects">项目经历</a></li>
-      <li><a href="#experience">工作经历</a></li>
+      <li><a href="#experience">开源历程</a></li>
       <li><a href="#contact">联系方式</a></li>
     </ul>
   </nav>
@@ -590,10 +590,10 @@
         <span class="dot"></span>
         正在寻找新机会
       </div>
-      <h1>你好，我是<br><span class="gradient">一名全栈开发者</span></h1>
+      <h1>你好，我是<br><span class="gradient">YanJY</span></h1>
       <p class="hero-desc">
-        热衷于构建优雅、高性能的 Web 应用。专注于前端工程化与用户体验设计，
-        致力于用技术解决实际问题。
+        一名专注于 Vue.js 生态的前端开发者，对 AI 应用与 Web 工程化有浓厚兴趣。
+        自 2019 年起持续探索前端技术，热衷于用代码构建有趣的开源项目。
       </p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">查看项目</a>
@@ -611,26 +611,27 @@
     <div class="about-grid">
       <div class="about-text reveal">
         <p>
-          我是一名拥有多年经验的软件开发者，专注于前端技术与全栈开发。
-          熟练运用 React、Vue、TypeScript 等现代前端技术栈，同时对 Node.js、
-          Python 等后端技术有深入的理解和实践。
+          我是一名前端开发者，自 2019 年加入 GitHub 以来，持续在前端领域深耕。
+          主要以 Vue.js 为核心技术栈，同时积极探索 JavaScript 工程化、AI 应用开发
+          以及 Web 性能优化等方向。
         </p>
         <p>
-          在工作中，我注重代码质量与工程化实践，善于将复杂的业务需求转化为
-          清晰、可维护的技术方案。对新技术保持持续学习的热情，追求极致的用户体验。
+          我喜欢通过开源项目来学习和实践新技术，从 Vue 组件开发到 ChatGPT Web 应用，
+          再到图片代理服务，每个项目都是技术成长的脚印。注重代码的可读性与实用性，
+          追求简洁优雅的工程实现。
         </p>
         <div class="stats">
           <div class="stat-item">
-            <div class="stat-number">3+</div>
-            <div class="stat-label">年开发经验</div>
+            <div class="stat-number">6+</div>
+            <div class="stat-label">年编程经历</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">完成项目</div>
+            <div class="stat-number">6</div>
+            <div class="stat-label">开源项目</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">5+</div>
-            <div class="stat-label">技术栈</div>
+            <div class="stat-number">4+</div>
+            <div class="stat-label">技术方向</div>
           </div>
         </div>
       </div>
@@ -638,31 +639,30 @@
         <div class="skill-category">
           <h3>前端开发</h3>
           <div class="skill-tags">
-            <span class="skill-tag">React</span>
             <span class="skill-tag">Vue.js</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">Next.js</span>
-            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Nuxt.js</span>
           </div>
         </div>
         <div class="skill-category">
-          <h3>后端开发</h3>
+          <h3>AI & 工具开发</h3>
           <div class="skill-tags">
+            <span class="skill-tag">ChatGPT API</span>
+            <span class="skill-tag">Gemini API</span>
             <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">Redis</span>
+            <span class="skill-tag">REST API</span>
           </div>
         </div>
         <div class="skill-category">
           <h3>工具与平台</h3>
           <div class="skill-tags">
             <span class="skill-tag">Git</span>
-            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">GitHub Pages</span>
+            <span class="skill-tag">Nginx</span>
             <span class="skill-tag">Linux</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">图片代理</span>
           </div>
         </div>
       </div>
@@ -678,110 +678,106 @@
     <div class="project-grid">
 
       <div class="project-card reveal">
-        <div class="project-icon">🛒</div>
-        <h3>电商平台管理系统</h3>
+        <div class="project-icon">🤖</div>
+        <h3>Gemini</h3>
         <p>
-          基于 React + Ant Design 构建的后台管理系统，包含商品管理、订单处理、
-          数据分析等核心模块，支持多角色权限控制。
+          基于 Google Gemini API 构建的 AI 应用，集成大语言模型能力，
+          实现智能对话与内容生成，探索前沿 AI 技术的落地实践。
         </p>
         <div class="project-tech">
-          <span>React</span>
-          <span>TypeScript</span>
-          <span>Ant Design</span>
+          <span>JavaScript</span>
+          <span>Gemini API</span>
           <span>Node.js</span>
         </div>
         <div class="project-links">
-          <a href="#">详情 →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-icon">📊</div>
-        <h3>数据可视化平台</h3>
-        <p>
-          面向企业的数据看板系统，支持自定义图表配置、实时数据流处理，
-          以及多维度数据钻取分析功能。
-        </p>
-        <div class="project-tech">
-          <span>Vue.js</span>
-          <span>ECharts</span>
-          <span>WebSocket</span>
-          <span>Python</span>
-        </div>
-        <div class="project-links">
-          <a href="#">详情 →</a>
+          <a href="https://github.com/yanjy317/gemini" target="_blank">GitHub →</a>
         </div>
       </div>
 
       <div class="project-card reveal">
         <div class="project-icon">💬</div>
-        <h3>实时协作工具</h3>
+        <h3>ChatGPT-Web</h3>
         <p>
-          支持多人实时编辑的在线文档协作工具，基于 CRDT 算法实现数据一致性，
-          集成即时通讯与评论系统。
+          基于 Vue.js 开发的 ChatGPT Web 客户端，支持流式对话、
+          会话历史管理与多轮上下文交互，提供流畅的 AI 聊天体验。
         </p>
         <div class="project-tech">
-          <span>React</span>
-          <span>Yjs</span>
-          <span>WebSocket</span>
-          <span>PostgreSQL</span>
+          <span>Vue.js</span>
+          <span>OpenAI API</span>
+          <span>SSE</span>
         </div>
         <div class="project-links">
-          <a href="#">详情 →</a>
+          <a href="https://github.com/yanjy317/ChatGPT-Web" target="_blank">GitHub →</a>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <div class="project-icon">🤖</div>
-        <h3>AI 智能助手</h3>
+        <div class="project-icon">🌐</div>
+        <h3>Personal Website</h3>
         <p>
-          集成大语言模型的智能客服系统，支持多轮对话、意图识别、知识库检索，
-          大幅提升客户服务效率。
+          个人主页项目，部署于 GitHub Pages，采用纯前端技术构建，
+          包含个人简介、项目展示、技能时间轴等模块，支持响应式布局。
         </p>
         <div class="project-tech">
-          <span>Next.js</span>
-          <span>LangChain</span>
-          <span>Redis</span>
-          <span>OpenAI</span>
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>GitHub Pages</span>
         </div>
         <div class="project-links">
-          <a href="#">详情 →</a>
+          <a href="https://github.com/yanjy317/yanjy317.github.io" target="_blank">GitHub →</a>
+          <a href="https://yanjy317.github.io" target="_blank">Live →</a>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <div class="project-icon">📱</div>
-        <h3>移动端 H5 商城</h3>
+        <div class="project-icon">🖼️</div>
+        <h3>Images Proxy</h3>
         <p>
-          高性能移动端电商前端，采用 SSR 提升首屏性能，集成支付、物流追踪、
-          会员体系等完整购物流程。
+          图片代理服务，用于解决跨域图片加载问题，提供稳定的图片中转
+          与缓存能力，支持多种图片源的统一代理访问。
         </p>
         <div class="project-tech">
-          <span>Nuxt.js</span>
-          <span>Vant</span>
-          <span>Sass</span>
           <span>Nginx</span>
+          <span>Linux</span>
+          <span>Proxy</span>
         </div>
         <div class="project-links">
-          <a href="#">详情 →</a>
+          <a href="https://github.com/yanjy317/images" target="_blank">GitHub →</a>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <div class="project-icon">⚙️</div>
-        <h3>DevOps 工具链</h3>
+        <div class="project-icon">💚</div>
+        <h3>Vue Projects</h3>
         <p>
-          内部研发效能平台，整合 CI/CD 流水线、代码质量检测、部署管理，
-          实现从开发到上线的全流程自动化。
+          Vue.js 技术实践合集，涵盖组件化开发、路由管理、状态管理等
+          核心特性的学习与探索，积累 Vue 生态的工程化经验。
         </p>
         <div class="project-tech">
-          <span>Go</span>
-          <span>Docker</span>
-          <span>Jenkins</span>
-          <span>K8s</span>
+          <span>Vue.js</span>
+          <span>Vue Router</span>
+          <span>Vuex</span>
         </div>
         <div class="project-links">
-          <a href="#">详情 →</a>
+          <a href="https://github.com/yanjy317/vue" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">📝</div>
+        <h3>Vue Demo</h3>
+        <p>
+          Vue.js 入门示例项目，包含基础组件封装、数据绑定、事件处理
+          等核心概念的实践演示，是 Vue 学习旅程的起点。
+        </p>
+        <div class="project-tech">
+          <span>Vue.js</span>
+          <span>JavaScript</span>
+          <span>CSS</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/vue-demo" target="_blank">GitHub →</a>
         </div>
       </div>
 
@@ -791,30 +787,37 @@
   <!-- Experience Timeline -->
   <section class="experience" id="experience">
     <div class="section-header reveal">
-      <span class="section-tag">Experience</span>
-      <h2 class="section-title">工作经历</h2>
+      <span class="section-tag">Journey</span>
+      <h2 class="section-title">开源历程</h2>
     </div>
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2024 - 至今</div>
-        <h3>高级前端工程师</h3>
-        <h4>某科技公司</h4>
-        <p>负责核心业务系统前端架构设计与开发，主导前端工程化建设，优化页面性能与用户体验。</p>
+        <div class="timeline-date">2025</div>
+        <h3>AI 应用探索</h3>
+        <h4>个人开源项目</h4>
+        <p>启动 Gemini 项目，集成 Google Gemini API 进行智能对话与内容生成，持续探索大语言模型在 Web 端的应用落地。</p>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2022 - 2024</div>
-        <h3>全栈开发工程师</h3>
-        <h4>某互联网公司</h4>
-        <p>参与多个 B 端/C 端产品从 0 到 1 的建设，涵盖后台管理系统、数据平台、移动端应用等。</p>
+        <div class="timeline-date">2023</div>
+        <h3>AI 对话应用 & 个人主页</h3>
+        <h4>个人开源项目</h4>
+        <p>开发 ChatGPT-Web 客户端，实现流式对话与多轮上下文管理；同步搭建个人主页并部署至 GitHub Pages。</p>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2021 - 2022</div>
-        <h3>前端开发工程师</h3>
-        <h4>某创业公司</h4>
-        <p>负责公司电商平台前端开发，使用 Vue.js 构建组件化应用，独立完成多个核心功能模块。</p>
+        <div class="timeline-date">2022</div>
+        <h3>工程化工具实践</h3>
+        <h4>个人开源项目</h4>
+        <p>构建图片代理服务解决跨域加载问题；持续深入 Vue.js 生态，实践组件化开发、路由管理与状态管理。</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2019 - 2020</div>
+        <h3>前端入门</h3>
+        <h4>GitHub</h4>
+        <p>加入 GitHub 开源社区，通过 Vue Demo 项目开启前端学习之旅，掌握组件封装、数据绑定等核心概念。</p>
       </div>
     </div>
   </section>
@@ -823,9 +826,9 @@
   <footer id="contact">
     <div class="social-links">
       <a href="https://github.com/yanjy317" target="_blank">GitHub</a>
-      <a href="mailto:your@email.com">Email</a>
+      <a href="https://yanjy317.github.io" target="_blank">Website</a>
     </div>
-    <p>&copy; 2026 YanJY &mdash; Built with passion.</p>
+    <p>&copy; 2019 - 2026 YanJY &mdash; Built with passion.</p>
   </footer>
 
   <script>
