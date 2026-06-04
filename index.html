@@ -1,13 +1,855 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>YanJY - 前端开发者</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a26;
+      --bg-card-hover: #22222f;
+      --text-primary: #e8e8ef;
+      --text-secondary: #9595a8;
+      --text-muted: #6b6b80;
+      --accent: #646cff;
+      --accent-light: #747bff;
+      --accent-glow: rgba(100, 108, 255, 0.25);
+      --border: #2a2a3a;
+      --gradient-1: linear-gradient(135deg, #646cff 0%, #a855f7 100%);
+      --gradient-2: linear-gradient(135deg, #3b82f6 0%, #646cff 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 15, 0.8);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled { padding: 12px 40px; }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-1);
+      transition: width 0.3s;
+      border-radius: 1px;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      top: 10%;
+      right: -10%;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+      bottom: 10%;
+      left: -5%;
+      pointer-events: none;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.6s ease 0.1s both;
+    }
+
+    .hero h1 .gradient {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 36px;
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      animation: fadeInUp 0.6s ease 0.3s both;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-1);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Section Common ===== */
+    section { padding: 100px 40px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    /* ===== About Section ===== */
+    .about {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 12px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .skill-category h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      padding: 6px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Projects Section ===== */
+    .projects { max-width: 1200px; margin: 0 auto; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+
+    .project-card:nth-child(1) .project-icon { background: rgba(59, 130, 246, 0.15); }
+    .project-card:nth-child(2) .project-icon { background: rgba(168, 85, 247, 0.15); }
+    .project-card:nth-child(3) .project-icon { background: rgba(34, 197, 94, 0.15); }
+    .project-card:nth-child(4) .project-icon { background: rgba(251, 146, 60, 0.15); }
+    .project-card:nth-child(5) .project-icon { background: rgba(236, 72, 153, 0.15); }
+    .project-card:nth-child(6) .project-icon { background: rgba(20, 184, 166, 0.15); }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .project-tech span {
+      padding: 3px 10px;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .project-links a:hover { color: var(--accent); }
+
+    /* ===== Timeline Section ===== */
+    .experience {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline {
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      padding-left: 56px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 3px solid var(--accent);
+      z-index: 1;
+    }
+
+    .timeline-item:first-child .timeline-dot {
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .timeline-date {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item h4 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    footer .social-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer .social-links a:hover { color: var(--accent); }
+
+    /* ===== Scroll Animations ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  测试GitHub网址
-  <div>测试页面，暂时用于内容管理</div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">YanJY</div>
+    <ul class="nav-links">
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#projects">项目经历</a></li>
+      <li><a href="#experience">开源历程</a></li>
+      <li><a href="#contact">联系方式</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        正在寻找新机会
+      </div>
+      <h1>你好，我是<br><span class="gradient">YanJY</span></h1>
+      <p class="hero-desc">
+        一名专注于 Vue.js 生态的前端开发者，对 AI 应用与 Web 工程化有浓厚兴趣。
+        自 2019 年起持续探索前端技术，热衷于用代码构建有趣的开源项目。
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">查看项目</a>
+        <a href="#contact" class="btn btn-outline">联系我</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="section-header reveal">
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">个人简介</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          我是一名前端开发者，自 2019 年加入 GitHub 以来，持续在前端领域深耕。
+          主要以 Vue.js 为核心技术栈，同时积极探索 JavaScript 工程化、AI 应用开发
+          以及 Web 性能优化等方向。
+        </p>
+        <p>
+          我喜欢通过开源项目来学习和实践新技术，从 Vue 组件开发到 ChatGPT Web 应用，
+          再到图片代理服务，每个项目都是技术成长的脚印。注重代码的可读性与实用性，
+          追求简洁优雅的工程实现。
+        </p>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">年编程经历</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">开源项目</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">技术方向</div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-category">
+          <h3>前端开发</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Vue.js</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Nuxt.js</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>AI & 工具开发</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">ChatGPT API</span>
+            <span class="skill-tag">Gemini API</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">REST API</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>工具与平台</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub Pages</span>
+            <span class="skill-tag">Nginx</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">图片代理</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="section-header reveal">
+      <span class="section-tag">Projects</span>
+      <h2 class="section-title">项目经历</h2>
+    </div>
+    <div class="project-grid">
+
+      <div class="project-card reveal">
+        <div class="project-icon">🤖</div>
+        <h3>Gemini</h3>
+        <p>
+          基于 Google Gemini API 构建的 AI 应用，集成大语言模型能力，
+          实现智能对话与内容生成，探索前沿 AI 技术的落地实践。
+        </p>
+        <div class="project-tech">
+          <span>JavaScript</span>
+          <span>Gemini API</span>
+          <span>Node.js</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/gemini" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">💬</div>
+        <h3>ChatGPT-Web</h3>
+        <p>
+          基于 Vue.js 开发的 ChatGPT Web 客户端，支持流式对话、
+          会话历史管理与多轮上下文交互，提供流畅的 AI 聊天体验。
+        </p>
+        <div class="project-tech">
+          <span>Vue.js</span>
+          <span>OpenAI API</span>
+          <span>SSE</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/ChatGPT-Web" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">🌐</div>
+        <h3>Personal Website</h3>
+        <p>
+          个人主页项目，部署于 GitHub Pages，采用纯前端技术构建，
+          包含个人简介、项目展示、技能时间轴等模块，支持响应式布局。
+        </p>
+        <div class="project-tech">
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>GitHub Pages</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/yanjy317.github.io" target="_blank">GitHub →</a>
+          <a href="https://yanjy317.github.io" target="_blank">Live →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">🖼️</div>
+        <h3>Images Proxy</h3>
+        <p>
+          图片代理服务，用于解决跨域图片加载问题，提供稳定的图片中转
+          与缓存能力，支持多种图片源的统一代理访问。
+        </p>
+        <div class="project-tech">
+          <span>Nginx</span>
+          <span>Linux</span>
+          <span>Proxy</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/images" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">💚</div>
+        <h3>Vue Projects</h3>
+        <p>
+          Vue.js 技术实践合集，涵盖组件化开发、路由管理、状态管理等
+          核心特性的学习与探索，积累 Vue 生态的工程化经验。
+        </p>
+        <div class="project-tech">
+          <span>Vue.js</span>
+          <span>Vue Router</span>
+          <span>Vuex</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/vue" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">📝</div>
+        <h3>Vue Demo</h3>
+        <p>
+          Vue.js 入门示例项目，包含基础组件封装、数据绑定、事件处理
+          等核心概念的实践演示，是 Vue 学习旅程的起点。
+        </p>
+        <div class="project-tech">
+          <span>Vue.js</span>
+          <span>JavaScript</span>
+          <span>CSS</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yanjy317/vue-demo" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section class="experience" id="experience">
+    <div class="section-header reveal">
+      <span class="section-tag">Journey</span>
+      <h2 class="section-title">开源历程</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2025</div>
+        <h3>AI 应用探索</h3>
+        <h4>个人开源项目</h4>
+        <p>启动 Gemini 项目，集成 Google Gemini API 进行智能对话与内容生成，持续探索大语言模型在 Web 端的应用落地。</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023</div>
+        <h3>AI 对话应用 & 个人主页</h3>
+        <h4>个人开源项目</h4>
+        <p>开发 ChatGPT-Web 客户端，实现流式对话与多轮上下文管理；同步搭建个人主页并部署至 GitHub Pages。</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2022</div>
+        <h3>工程化工具实践</h3>
+        <h4>个人开源项目</h4>
+        <p>构建图片代理服务解决跨域加载问题；持续深入 Vue.js 生态，实践组件化开发、路由管理与状态管理。</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2019 - 2020</div>
+        <h3>前端入门</h3>
+        <h4>GitHub</h4>
+        <p>加入 GitHub 开源社区，通过 Vue Demo 项目开启前端学习之旅，掌握组件封装、数据绑定等核心概念。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer / Contact -->
+  <footer id="contact">
+    <div class="social-links">
+      <a href="https://github.com/yanjy317" target="_blank">GitHub</a>
+      <a href="https://yanjy317.github.io" target="_blank">Website</a>
+    </div>
+    <p>&copy; 2019 - 2026 YanJY &mdash; Built with passion.</p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
